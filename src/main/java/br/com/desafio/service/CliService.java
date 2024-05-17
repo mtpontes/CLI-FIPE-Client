@@ -1,4 +1,4 @@
-package br.com.desafio.principal;
+package br.com.desafio.service;
 
 import java.time.Year;
 import java.util.Comparator;
@@ -15,8 +15,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import br.com.desafio.model.carros.Dados;
 import br.com.desafio.model.carros.Modelos;
 import br.com.desafio.model.carros.Veiculo;
-import br.com.desafio.service.ApiConsumer;
-import br.com.desafio.service.DataConverter;
 
 @Service
 public class CliService {
@@ -27,7 +25,7 @@ public class CliService {
 	private String URL_DINAMICA = "/marcas";
 
 	
-	void mostraMenu(Scanner leitura, int sair) {
+	public void mostraMenu(Scanner leitura, int sair) {
 		System.out.println();
 		String menu = """
 				*** MENU ***
