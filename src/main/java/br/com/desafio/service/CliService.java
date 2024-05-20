@@ -8,9 +8,8 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.type.TypeReference;
 
 import br.com.desafio.model.carros.Dados;
 import br.com.desafio.model.carros.Modelos;
@@ -19,10 +18,9 @@ import br.com.desafio.model.carros.Veiculo;
 @Service
 public class CliService {
 	
-	private ApiConsumerLegacy apiConsumer = new ApiConsumerLegacy();
-	private DataConverter converter = new DataConverter();
-	private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
-	private String URL_DINAMICA = "/marcas";
+	@Autowired
+	private ApiConsumer consumer;
+	private String URL_DINAMICA = "";
 
 	
 	public void mostraMenu(Scanner leitura, int sair) {
@@ -44,20 +42,20 @@ public class CliService {
 
 		switch(entrada) {
 		case 1:
-			System.out.println("Você escolheu a categoria Carros");
-			URL_DINAMICA = URL_BASE + "carros" + URL_DINAMICA;
+			System.out.println("Você escolheu a categoria Carros \n");
+			URL_DINAMICA = "/carros/marcas";
 			mostraMarcas(URL_DINAMICA);
 			break;
 			
 		case 2:
-			System.out.println("Você escolheu a categoria Motos");
-			URL_DINAMICA = URL_BASE + "motos" + URL_DINAMICA;
+			System.out.println("Você escolheu a categoria Motos \n");
+			URL_DINAMICA = "/motos/marcas";
 			mostraMarcas(URL_DINAMICA);
 			break;
 			
 		case 3:
-			System.out.println("Você escolheu a categoria Caminhoes");
-			URL_DINAMICA = URL_BASE + "caminhoes" + URL_DINAMICA;
+			System.out.println("Você escolheu a categoria Caminhoes \n");
+			URL_DINAMICA = "/caminhoes/marcas";
 			mostraMarcas(URL_DINAMICA);
 			break;
 			
@@ -67,8 +65,8 @@ public class CliService {
 			break;
 			
 		default:
-			System.out.println("Você escolheu a categoria padrão, Carros");
-			URL_DINAMICA = URL_BASE + "carros" + URL_DINAMICA;
+			System.out.println("Você escolheu a categoria padrão, Carros \n");
+			URL_DINAMICA = "/carros/marcas";
 			mostraMarcas(URL_DINAMICA);
 			break;
 		}
@@ -77,9 +75,7 @@ public class CliService {
 	private void mostraMarcas(String URL_CATEGORIA) {
 		System.out.println("** Lista de marcas: **" + "\n");
 
-		String json = apiConsumer.getData(URL_CATEGORIA);
-		List<Dados> marcas = converter.convertDataToList(json, Dados.class);
-
+		List<Dados> marcas = consumer.getDados(URL_CATEGORIA);
 		marcas.stream()
 			.sorted(Comparator.comparing(Dados::codigo))
 			.forEach(System.out::println);
@@ -87,14 +83,12 @@ public class CliService {
 	}
 	
 	public List<Dados> mostraModelosMarca(Scanner leitura) {
-		System.out.println("Digite o número da marca para a busca por modelos");
-		System.out.println();
+		System.out.println("Digite o número da marca para a busca por modelos \n");
 		
 		String numeroMarca = leitura.nextLine();
 		this.URL_DINAMICA = URL_DINAMICA + "/" + numeroMarca + "/modelos";
-		String json = apiConsumer.getData(URL_DINAMICA);
-		Modelos modelos = converter.convertData(json, Modelos.class);
-		
+
+		Modelos modelos = consumer.getModelos(URL_DINAMICA);
 		modelos.listaModelos().forEach(System.out::println);
 		System.out.println();
 		
@@ -102,8 +96,7 @@ public class CliService {
 	}
 	
 	public Map<String, Object> mostraAnosDoModelo(Scanner leitura, List<Dados> modelos) {
-		System.out.println("-- Digite o número do modelo -- ");
-		System.out.println();
+		System.out.println("-- Digite o número do modelo -- \n");
 		
 		String numeroModelo = leitura.nextLine();
 		Dados modelo = modelos.stream()
@@ -112,14 +105,13 @@ public class CliService {
 				.orElseThrow(() -> new RuntimeException("!!! Modelo não encontrado !!!"));
 
 		this.URL_DINAMICA = URL_DINAMICA + "/" + numeroModelo + "/anos";
-		String json = apiConsumer.getData(URL_DINAMICA);
-		List<Dados> anos = converter.convertData(json, new TypeReference<List<Dados>>() {});
+		List<Dados> anos = consumer.getDados(URL_DINAMICA);
 
 		System.out.println("""
 				Escolha o tipo de modelo:
 
-				1 - 5 mais recentes
-				2 - 5 mais antigos
+				1 - Cinco mais recentes
+				2 - Cinco mais antigos
 				3 - Inferior a (insira o ano)
 				""");
 
@@ -159,14 +151,13 @@ public class CliService {
 	}
 	
 	public void mostraEdicoesEncontradas(List<Dados> anos, Dados modelo) {
-		System.out.println("Edições encontradas para o modelo " + modelo.nome() + ": ");
-		System.out.println();
+		System.out.println("Edições encontradas para o modelo " + modelo.nome() + ": \n");
 
 		anos.forEach(ano -> {
 			String url = URL_DINAMICA + "/" + ano.codigo();
-			String jsonResponse = apiConsumer.getData(url);
-			Veiculo veiculo = converter.convertData(jsonResponse, Veiculo.class);
-			System.out.println(ano.codigo().split("-")[0] + " - " + veiculo);
+			
+			Veiculo veiculo = consumer.getVeiculo(url);
+			System.out.println(veiculo);
 		});
 	}
 }
