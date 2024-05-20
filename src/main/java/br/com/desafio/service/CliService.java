@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.desafio.model.veiculos.Dados;
+import br.com.desafio.model.veiculos.ModeloEAnos;
 import br.com.desafio.model.veiculos.Modelos;
 import br.com.desafio.model.veiculos.Veiculo;
 
@@ -95,7 +96,7 @@ public class CliService {
 		return modelos.listaModelos();
 	}
 	
-	public Map<String, Object> mostraAnosDoModelo(Scanner leitura, List<Dados> modelos) {
+	public ModeloEAnos mostraAnosDoModelo(Scanner leitura, List<Dados> modelos) {
 		System.out.println("-- Digite o número do modelo -- \n");
 		
 		String numeroModelo = leitura.nextLine();
@@ -147,7 +148,7 @@ public class CliService {
 		map.put("modelo", modelo);
 		map.put("anos", anos);
 		
-		return map;
+		return new ModeloEAnos(modelo, anos);
 	}
 	
 	public void mostraEdicoesEncontradas(List<Dados> anos, Dados modelo) {

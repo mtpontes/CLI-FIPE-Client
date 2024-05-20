@@ -29,15 +29,13 @@ public class Principal {
 
 			dados = cli.mostraModelosMarca(leitura);
 			
-			var mapa = cli.mostraAnosDoModelo(leitura, dados);
-			List<Dados> anos = (List<Dados>) mapa.get("anos");
-			Dados modelo = (Dados) mapa.get("modelo");
+			var modeloEAnos = cli.mostraAnosDoModelo(leitura, dados);
 			
-			if (anos == null || anos.isEmpty()) {
+			if (modeloEAnos.anos() == null || modeloEAnos.anos().isEmpty()) {
 				System.out.println("Nenhum modelo encontrado para este ano \n");
 				break;
 			}
-			cli.mostraEdicoesEncontradas(anos, modelo);
+			cli.mostraEdicoesEncontradas(modeloEAnos.anos(), modeloEAnos.modelo());
 		}
 	}
 }
