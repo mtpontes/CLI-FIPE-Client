@@ -8,7 +8,7 @@
 		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.alura</groupId>
+	<groupId>br.com</groupId>
 	<artifactId>fipe-consulta-cli</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
