@@ -6,7 +6,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ApiConsumer {
+public class ApiConsumerLegacy {
 	
 	public String getData(String endereco) {
 		HttpClient client = HttpClient.newHttpClient();

@@ -19,7 +19,7 @@ import br.com.desafio.model.carros.Veiculo;
 @Service
 public class CliService {
 	
-	private ApiConsumer apiConsumer = new ApiConsumer();
+	private ApiConsumerLegacy apiConsumer = new ApiConsumerLegacy();
 	private DataConverter converter = new DataConverter();
 	private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
 	private String URL_DINAMICA = "/marcas";
