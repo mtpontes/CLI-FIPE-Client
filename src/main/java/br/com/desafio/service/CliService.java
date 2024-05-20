@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.desafio.model.carros.Dados;
-import br.com.desafio.model.carros.Modelos;
-import br.com.desafio.model.carros.Veiculo;
+import br.com.desafio.model.veiculos.Dados;
+import br.com.desafio.model.veiculos.Modelos;
+import br.com.desafio.model.veiculos.Veiculo;
 
 @Service
 public class CliService {

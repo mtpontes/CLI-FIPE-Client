@@ -6,9 +6,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import br.com.desafio.model.carros.Dados;
-import br.com.desafio.model.carros.Modelos;
-import br.com.desafio.model.carros.Veiculo;
+import br.com.desafio.model.veiculos.Dados;
+import br.com.desafio.model.veiculos.Modelos;
+import br.com.desafio.model.veiculos.Veiculo;
 
 @FeignClient(name = "fipeClient", url = "https://parallelum.com.br/fipe/api/v1")
 public interface ApiConsumer {

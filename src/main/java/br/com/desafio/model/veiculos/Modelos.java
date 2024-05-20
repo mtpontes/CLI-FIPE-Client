@@ -1,4 +1,4 @@
-package br.com.desafio.model.carros;
+package br.com.desafio.model.veiculos;
 
 import java.util.List;
 
