@@ -1,29 +1,24 @@
 package br.com.desafio.service;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.List;
 
-public class ApiConsumer {
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import br.com.desafio.model.carros.Dados;
+import br.com.desafio.model.carros.Modelos;
+import br.com.desafio.model.carros.Veiculo;
+
+@FeignClient(name = "fipeClient", url = "https://parallelum.com.br/fipe/api/v1")
+public interface ApiConsumer {
 	
-	public String getData(String endereco) {
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder()
-				.uri(URI.create(endereco))
-				.build();
-		HttpResponse<String> response = null;
-		
-		try {
-			response = client.send(request, HttpResponse.BodyHandlers.ofString());
-		} catch (IOException e) {
-			throw new RuntimeException();
-		} catch (InterruptedException e){
-			throw new RuntimeException();
-		}
-		
-		String jsonString = response.body();
-		return jsonString;
-	}
+	@GetMapping(value = "{path}")
+	List<Dados> getDados(@PathVariable String path);
+
+	@GetMapping(value = "{path}")
+	Modelos getModelos(@PathVariable String path);
+
+	@GetMapping(value = "{path}")
+	Veiculo getVeiculo(@PathVariable String path);
 }
