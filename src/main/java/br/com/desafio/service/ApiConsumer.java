@@ -12,7 +12,7 @@ import br.com.desafio.model.veiculos.Veiculo;
 
 @FeignClient(name = "fipeClient", url = "https://parallelum.com.br/fipe/api/v1")
 public interface ApiConsumer {
-	
+
 	@GetMapping(value = "{path}")
 	List<Dados> getDados(@PathVariable String path);
 

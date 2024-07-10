@@ -18,12 +18,12 @@ import br.com.desafio.model.veiculos.Veiculo;
 
 @Service
 public class CliService {
-	
+
 	@Autowired
 	private ApiConsumer consumer;
 	private String URL_DINAMICA = "";
 
-	
+
 	public void mostraMenu(Scanner leitura, int sair) {
 		System.out.println();
 		String menu = """
@@ -72,7 +72,7 @@ public class CliService {
 			break;
 		}
 	}
-	
+
 	private void mostraMarcas(String URL_CATEGORIA) {
 		System.out.println("** Lista de marcas: **" + "\n");
 
@@ -82,7 +82,7 @@ public class CliService {
 			.forEach(System.out::println);
 		System.out.println();
 	}
-	
+
 	public List<Dados> mostraModelosMarca(Scanner leitura) {
 		System.out.println("Digite o número da marca para a busca por modelos \n");
 		
@@ -95,7 +95,7 @@ public class CliService {
 		
 		return modelos.listaModelos();
 	}
-	
+
 	public ModeloEAnos mostraAnosDoModelo(Scanner leitura, List<Dados> modelos) {
 		System.out.println("-- Digite o número do modelo -- \n");
 		
@@ -125,13 +125,13 @@ public class CliService {
 					.limit(5)
 					.collect(Collectors.toList());
 				break; 
-	
+
 			case 2: 
 				anos = anos.stream()
 					.skip(Math.max(0, anos.size() - 5))
 					.collect(Collectors.toList());
 				break;
-	
+
 			default:
 				if (tipo < 1950 || tipo > Year.now().getValue()) {
 					anos = null;
@@ -150,7 +150,7 @@ public class CliService {
 		
 		return new ModeloEAnos(modelo, anos);
 	}
-	
+
 	public void mostraEdicoesEncontradas(List<Dados> anos, Dados modelo) {
 		System.out.println("Edições encontradas para o modelo " + modelo.nome() + ": \n");
 

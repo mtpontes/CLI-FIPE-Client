@@ -13,7 +13,7 @@ import br.com.desafio.service.CliService;
 public class Principal {
 
 	private Scanner leitura = new Scanner(System.in);
-	
+
 	@Autowired
 	private CliService cli;
 
