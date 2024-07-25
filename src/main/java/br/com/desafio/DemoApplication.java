@@ -13,7 +13,7 @@ import br.com.desafio.principal.Principal;
 public class DemoApplication implements CommandLineRunner {
 	
 	@Autowired
-	Principal principal;
+	private Principal principal;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);

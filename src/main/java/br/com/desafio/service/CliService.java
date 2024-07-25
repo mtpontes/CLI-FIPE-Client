@@ -27,16 +27,16 @@ public class CliService {
 	public void mostraMenu(Scanner leitura, int sair) {
 		System.out.println();
 		String menu = """
-				*** MENU ***
+			*** MENU ***
 
-				Digite uma das opções para consultar:
+			Digite uma das opções para consultar:
 
-				1 - Carro
-				2 - Moto
-				3 - Caminhao
-				0 - Sair 
+			1 - Carro
+			2 - Moto
+			3 - Caminhao
+			0 - Sair 
 
-				""";
+			""";
 		System.out.println(menu);
 		Integer entrada = leitura.nextInt();
 		leitura.nextLine();
@@ -101,20 +101,22 @@ public class CliService {
 		
 		String numeroModelo = leitura.nextLine();
 		Dados modelo = modelos.stream()
-				.filter(d -> d.codigo().equals(numeroModelo))
-				.findFirst()
-				.orElseThrow(() -> new RuntimeException("!!! Modelo não encontrado !!!"));
+			.filter(d -> d.codigo().equals(numeroModelo))
+			.findFirst()
+			.orElseThrow(() -> new RuntimeException("!!! Modelo não encontrado !!!"));
 
 		this.URL_DINAMICA = URL_DINAMICA + "/" + numeroModelo + "/anos";
 		List<Dados> anos = consumer.getDados(URL_DINAMICA);
 
 		System.out.println("""
-				Escolha o tipo de modelo:
+			Escolha o tipo de modelo:
 
-				1 - Cinco mais recentes
-				2 - Cinco mais antigos
-				3 - Inferior a (insira o ano)
-				""");
+			1 - Cinco mais recentes
+			2 - Cinco mais antigos
+			3 - Inferior a (insira o ano)
+			
+			"""
+		);
 
 		int tipo = leitura.nextInt(); 
 		leitura.nextLine();

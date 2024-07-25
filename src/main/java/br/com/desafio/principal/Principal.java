@@ -11,13 +11,12 @@ import br.com.desafio.service.CliService;
 
 @Service
 public class Principal {
-
-	private Scanner leitura = new Scanner(System.in);
-
+	
 	@Autowired
 	private CliService cli;
+	private Scanner leitura = new Scanner(System.in);
 
-
+	
 	public void menu() {
 		var sair = -1;
 		List<Dados> dados = null;
