@@ -57,7 +57,6 @@ Para executar a aplicação use o comando:
     java -jar nome_do_jar
 
 </details>
-<br>
 
 # 🤝 Créditos
 
