@@ -5,7 +5,7 @@
 
 Este projeto é a realização de um desafio dado pelo instrutor durante o curso [Java: trabalhando com lambdas, streams e Spring Framework](https://cursos.alura.com.br/course/java-trabalhando-lambdas-streams-spring-framework) da [Alura](https://www.alura.com.br), onde devemos usar o que foi aprendido para implementar um client CLI que consome e abstrai a [FIPE API HTTP REST](https://deividfortuna.github.io/fipe/). Esta é a minha versão do desafio, com as minhas ideias e implementações.
 
-# 🖥️ Interface 
+## 🖥️ Interface 
 
 ## Funções
 
@@ -23,11 +23,11 @@ A aplicação segue o seguinte fluxo ordenadamente em loop:
 ## 🚀 Como Rodar
 <details><summary>Clique para expandir</summary>
 
-### 📋 Pré-requisitos
+### Pré-requisitos
 
 - Java 17
 
-### 📦 Instalando
+### Instalando
 
 - Clone o projeto com o comando (ou baixe o zip pelo Github):
 
@@ -48,7 +48,7 @@ A aplicação segue o seguinte fluxo ordenadamente em loop:
     
           mvn clean install -DskipTests
 
-### 🌐 Deploy
+### Deploy
 
 O app empacotado pode ser encontrado no diretório `/target` após seguir o procedimento de instalação.
 
@@ -58,7 +58,7 @@ Para executar a aplicação use o comando:
 
 </details>
 
-# 🤝 Créditos
+## 🤝 Créditos
 
 - [Alura](https://www.alura.com.br)
 
