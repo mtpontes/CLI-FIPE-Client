@@ -7,7 +7,7 @@ Este projeto é a realização de um desafio dado pelo instrutor durante o curso
 
 ## 🖥️ Interface 
 
-## Funções
+### Funções
 
 A aplicação segue o seguinte fluxo ordenadamente em loop:
 
@@ -20,8 +20,7 @@ A aplicação segue o seguinte fluxo ordenadamente em loop:
 
 ![gif](/readme/video.gif)
 
-## 🚀 Como Rodar
-<details><summary>Clique para expandir</summary>
+<details><summary><h2>🚀 Como Rodar</h2></summary>
 
 ### Pré-requisitos
 
@@ -58,8 +57,10 @@ Para executar a aplicação use o comando:
 
 </details>
 
-## 🤝 Créditos
+<details><summary><h2>🤝 Créditos</h2></summary>
 
 - [Alura](https://www.alura.com.br)
 
 - [FIPE API HTTP REST](https://deividfortuna.github.io/fipe/)
+
+</details>
